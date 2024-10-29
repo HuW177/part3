@@ -34,9 +34,10 @@ let persons = [
     }
   ]
 
-app.get('*', (request, response) => {
-    res.sendFile(__dirname + '/dist/index.html');
-  })
+  app.get('*', (request, response) => {
+    response.sendFile(__dirname + '/dist/index.html')
+})
+
 
 app.get('/api/persons', (request, response) => {
     response.json(persons)
@@ -53,17 +54,20 @@ app.get('/info', (request, response) => {
     `)
 })
 
-
 app.get('/api/persons/:id', (request, response) => {
-    const id = request.params.id
-    const person = persons.find(person => person.id === id)
-    
-    if (person) {
-      response.json(person)
-    } else {
-      response.status(404).end()
-    }
-  })
+  const id = request.params.id
+  const person = persons.find(person => person.id === id)
+  
+  if (person) {
+    response.json(person)
+  } else {
+    response.status(404).end()
+  }
+})
+
+
+
+
 
 app.delete('/api/persons/:id', (request, response) => {
     const id = request.params.id
