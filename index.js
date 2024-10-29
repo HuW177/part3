@@ -5,7 +5,7 @@ const cors = require('cors')
 const morgan = require('morgan')
 
 const app = express()
-app.use(cors());
+app.use(cors())
 app.use(express.json())
 app.use(morgan('tiny'))
 app.use(express.static('dist'))
@@ -75,13 +75,7 @@ app.delete('/api/persons/:id', (request, response) => {
     response.status(204).end()
 })
 
-app.post('/api/persons', (request, response) => {
-    const {name, number} = request.body
-    const id = Math.floor(Math.random()*999999).toString()
-    const newPerson = {id, name , number}
-    persons.push(newPerson)
-    response.status(202).json(newPerson)
-})
+
 
 app.post('/api/persons', (request, response) =>{
     const { name, number } = request.body
@@ -116,4 +110,4 @@ app.listen(PORT, () => {
 })
 
 
-app.use(cors())
+
